@@ -22,15 +22,12 @@ def gerar_senha(
     if not categorias:
         raise ValueError("Nenhum tipo de caractere selecionado!")
 
-    # 1) Garante pelo menos um de cada categoria
     senha = [secrets.choice(cat) for cat in categorias]
 
-    # 2) Preenche o resto com todos os caracteres possíveis
     todos_caracteres = "".join(categorias)
     restante = tamanho - len(senha)
     senha.extend(secrets.choice(todos_caracteres) for _ in range(restante))
 
-    # 3) Embaralha para evitar padrão previsível
     secrets.SystemRandom().shuffle(senha)
 
     return "".join(senha)
@@ -62,3 +59,5 @@ if __name__ == "__main__":
 
     for s in senhas:
         print(s)
+
+
